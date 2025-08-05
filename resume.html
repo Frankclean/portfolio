@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Franky | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Assets/logo/icons8-favicon-50.png">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer>
+        // Fade-in on scroll
+        document.addEventListener("DOMContentLoaded", () => {
+            const faders = document.querySelectorAll('.fade-in');
+            const options = { threshold: 0.1 };
+
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, options);
+
+            faders.forEach(el => appearOnScroll.observe(el));
+        });
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <style>
+        :root {
+            --bg-color: #d1d2e6;
+            --text-color: #020000;
+            --card-bg: #ffffff;
+            --primary: #0051ff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #0b348b;
+            --card-bg: #1e5697;
+            --primary: #04192c;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .section {
+            padding: 60px 20px;
+            background: var(--bg-color);
+        }
+
+        .resume-container {
+            max-width: 900px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .resume-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            color: var(--text-color);
+        }
+
+        .resume-content h4 {
+            margin-top: 25px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 5px;
+        }
+
+        .resume-content ul {
+            padding-left: 20px;
+        }
+
+        .resume-download {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: rgb(2, 29, 88);
+        }
+
+        a {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: rgb(0, 0, 0);
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        header {
+            background: linear-gradient(to right, #6366f1, #3b82f6);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            background-color: #1e3a8a;
+            padding: 1rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #f215fa;
+        }
+
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            border-top: 4px solid #2563eb;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: #000000;
+            font-size: 1.7rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #000000;
+            transform: scale(1.3);
+        }
+
+        .x-icon {
+            height: 28px;
+            filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(180deg) brightness(105%) contrast(105%);
+            transition: transform 0.3s, filter 0.3s;
+        }
+
+        .x-icon:hover {
+            transform: scale(1.2);
+            filter: invert(63%) sepia(100%) saturate(3000%) hue-rotate(190deg);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 0.8rem 0;
+            }
+
+            section {
+                margin: 1rem;
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Toggle Button */
+        .toggle-container {
+            text-align: right;
+            padding: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #mode-toggle {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #mode-toggle:hover {
+            background-color: #2563eb;
+        }
+
+        /* Dark Mode */
+        body.dark {
+            background: linear-gradient(to bottom, #0f172a, #1e293b);
+            color: #e2e8f0;
+        }
+
+        body.dark header {
+            background: linear-gradient(to right, #0f172a, #1e293b);
+            color: #e2e8f0;
+        }
+
+        body.dark nav {
+            background-color: #111827;
+        }
+
+        body.dark section {
+            background: #1e293b;
+            color: #e2e8f0;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark footer {
+            background-color: #111827;
+            border-top: 4px solid #3b82f6;
+        }
+
+        body.dark a {
+            color: #60a5fa;
+        }
+
+        body.dark #mode-toggle {
+            background-color: #334155;
+            color: #e2e8f0;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #1e3a8a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 6px solid #ffffff;
+            border-top: 6px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        h2 {
+            color: #1d4ed8;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Frankie's Wurld</h1>
+        <p>Web Developer | Videographer | Photographer | Event Coverage</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html"><i data-lucide="home"></i> Home</a></li>
+            <li><a href="about.html"><i data-lucide="user"></i> About</a></li>
+            <li><a href="projects.html"><i data-lucide="code-2"></i> Projects</a></li>
+            <li><a href="contact.html"><i data-lucide="mail"></i> Contact</a></li>
+            <li><a href="resume.html"><i data-lucide="file-text"></i> Resume</a></li>
+        </ul>
+    </nav>
+    <div class="toggle-container">
+        <button id="mode-toggle">🌙 Dark Mode</button>
+    </div>
+
+
+    <!-- Sound effect -->
+    <audio id="click-sound" src="Assets/Sound/reverby-notification-sound-246407.mp3"></audio>
+
+    <section id="resume" class="section">
+        <h2>My Resume</h2>
+        <div class="resume-container">
+            <div class="resume-content">
+                <h3>Ugochukwu Franklyn Chidera</h3>
+                <p><strong>Roles:</strong> Web Developer, Videographer, Photographer, Event Coverage & Editor</p>
+                <p><strong>Email:</strong> <a href="mailto:frankykingsley9@gmail.com">frankykingsley9@gmail.com</a></p>
+                <p><strong>Phone:</strong> 08142289751</p>
+                <p><strong>Location:</strong> Ikeja, Lagos, Nigeria</p>
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/frankyshotme"
+                        target="_blank">frankyshotme</a></p>
+
+                <h4>Objective</h4>
+                <p>To deliver the best and quality products that stand out to my clients and also cherish the good
+                    relationship between me and my clients.</p>
+
+                <h4>Education</h4>
+                <p><strong>B.Sc. Computer Science</strong><br>Trinity University, Yaba, Lagos, Nigeria</p>
+
+                <h4>Work Experience</h4>
+                <p><strong>Videographer & Photo Editor</strong><br>Doyen Pixels (July 1st, 2025 – Present)<br>Enhanced
+                    manpower and significantly improved quality standards in visual production.</p>
+                <p><strong>Web Developer</strong><br>PiggyVest (January 3rd – June 4th, 2025)<br>Developed and
+                    maintained multiple websites. Performed regular web maintenance and optimization.</p>
+
+                <h4>Skills</h4>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>Photography</li>
+                    <li>Video Editing</li>
+                </ul>
+
+                <h4>Projects</h4>
+                <p><strong>Fashion Project</strong><br>Developed a website for a clothing brand.<br><a
+                        href="https://frankclean.github.io/Fashion-Project/" target="_blank">View Project</a></p>
+                <p><strong>Video Editing</strong><br>Edited a creative video on hair making.<br><a
+                        href="https://instagram.com/frankyshotme" target="_blank">View Project</a></p>
+
+                <h4>Certificates</h4>
+                <ul>
+                    <li>Certificate in Web Development</li>
+                    <li>Certificate in Videography</li>
+                </ul>
+            </div>
+
+            <div class="resume-download">
+                <a href="Assets/Franklyn_Resume.pdf" class="download-btn" download>
+                    📄 Download Resume (PDF)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            const root = document.documentElement;
+            const current = root.getAttribute("data-theme");
+            root.setAttribute("data-theme", current === "dark" ? "light" : "dark");
+        }
+    </script>
+    <footer>
+        <div class="social-links">
+            <a href="https://facebook.com/frankyshotme" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/frankyshotme" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/in/frankyshotme" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://twitter.com/frankyshotme" target="_blank">
+                <img src="Assets/logo/icons8-x-logo.svg" alt="X" style="height: 35px;">
+            </a>
+
+            <a href="https://tiktok.com/frankyshotme" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/2348142289751" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.snapchat.com/add/franklyns_snap" target="_blank"><i
+                    class="fab fa-snapchat-ghost"></i></a>
+        </div>
+
+        <p>© 2025 Frankie's Wurld. All rights reserved.</p>
+    </footer>
+    <script>
+        const toggleBtn = document.getElementById("mode-toggle");
+        const body = document.body;
+
+        // Load saved mode
+        const currentMode = localStorage.getItem("mode") || "light";
+        if (currentMode === "dark") {
+            body.classList.add("dark");
+            toggleBtn.textContent = "☀️ Light Mode";
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            const isDark = body.classList.contains("dark");
+            toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+            localStorage.setItem("mode", isDark ? "dark" : "light");
+        });
+        lucide.createIcons(); // load icons
+        // Typing effect
+        const words = ["a Web Developer ", "a Videographer ", "a Photograoher ", "and i also cover Events"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let currentText = '';
+        let isDeleting = false;
+        const typeTarget = document.getElementById("typewriter");
+
+        function typeEffect() {
+            const word = words[wordIndex];
+            currentText = isDeleting
+                ? word.substring(0, charIndex--)
+                : word.substring(0, charIndex++);
+
+            typeTarget.innerHTML = currentText;
+
+            let delay = isDeleting ? 50 : 120;
+
+            if (!isDeleting && charIndex === word.length) {
+                delay = 1000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                delay = 300;
+            }
+
+            setTimeout(typeEffect, delay);
+        }
+
+        typeEffect();
+    </script>
+
+</body>
+
+</html>

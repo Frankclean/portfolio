@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Franky | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Assets/logo/icons8-favicon-50.png">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer>
+        // Fade-in on scroll
+        document.addEventListener("DOMContentLoaded", () => {
+            const faders = document.querySelectorAll('.fade-in');
+            const options = { threshold: 0.1 };
+
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, options);
+
+            faders.forEach(el => appearOnScroll.observe(el));
+        });
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Frankie's Wurld</h1>
+        <p>Web Developer | Videographer | Photographer | Event Coverage</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html"><i data-lucide="home"></i> Home</a></li>
+            <li><a href="about.html"><i data-lucide="user"></i> About</a></li>
+            <li><a href="projects.html"><i data-lucide="code-2"></i> Projects</a></li>
+            <li><a href="contact.html"><i data-lucide="mail"></i> Contact</a></li>
+            <li><a href="resume.html"><i data-lucide="file-text"></i> Resume</a></li>
+        </ul>
+    </nav>
+    <div class="toggle-container">
+        <button id="mode-toggle">🌙 Dark Mode</button>
+    </div>
+
+
+    <!-- Sound effect -->
+    <audio id="click-sound" src="Assets/Sound/reverby-notification-sound-246407.mp3"></audio>
+    <section id="contact" class="fade-in">
+        <h2>Contact Me</h2>
+        <p>Email: <a href="mailto:frankykingsley9@gmail.com">frankykingsley9@gmail.com</a></p>
+        <p>Phone: <a href="tel: +2348142289751">+234 814 228 9751</a></p>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://facebook.com/frankyshotme" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/frankyshotme" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/in/frankyshotme" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://twitter.com/frankyshotme" target="_blank">
+                <img src="Assets/logo/icons8-x-logo.svg" alt="X" style="height: 35px;">
+            </a>
+
+            <a href="https://tiktok.com/frankyshotme" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/2348142289751" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.snapchat.com/add/franklyns_snap" target="_blank"><i
+                    class="fab fa-snapchat-ghost"></i></a>
+        </div>
+
+        <p>© 2025 Frankie's Wurld. All rights reserved.</p>
+    </footer>
+    <script>
+        const toggleBtn = document.getElementById("mode-toggle");
+        const body = document.body;
+
+        // Load saved mode
+        const currentMode = localStorage.getItem("mode") || "light";
+        if (currentMode === "dark") {
+            body.classList.add("dark");
+            toggleBtn.textContent = "☀️ Light Mode";
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            const isDark = body.classList.contains("dark");
+            toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+            localStorage.setItem("mode", isDark ? "dark" : "light");
+        });
+        lucide.createIcons(); // load icons
+        // Typing effect
+        const words = ["a Web Developer ", "a Data Analyst "
+            , "a Videographer ", "a Photograoher "];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let currentText = '';
+        let isDeleting = false;
+        const typeTarget = document.getElementById("typewriter");
+
+        function typeEffect() {
+            const word = words[wordIndex];
+            currentText = isDeleting
+                ? word.substring(0, charIndex--)
+                : word.substring(0, charIndex++);
+
+            typeTarget.innerHTML = currentText;
+
+            let delay = isDeleting ? 50 : 120;
+
+            if (!isDeleting && charIndex === word.length) {
+                delay = 1000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                delay = 300;
+            }
+
+            setTimeout(typeEffect, delay);
+        }
+
+        typeEffect();
+    </script>
+
+</body>
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+<script>
+    window.addEventListener("load", () => {
+        document.getElementById("preloader").style.display = "none";
+    });
+</script>
+
+</html>
